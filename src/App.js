@@ -1,20 +1,27 @@
+import React from "react";
+import { useRoutes } from "react-router-dom";
+import routes from "src/routes";
+import { makeStyles, useTheme } from "@material-ui/core";
+import GlobalStyles from "./components/GlobalStyles";
+import { ThemeProvider } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { light, dark } from "src/theme";
+
+// const useStyles = makeStyles((theme) => {
+//   console.log(theme);
+// });
+
 function App() {
+  // const classes = useStyles();
+  // const theme = useTheme();
+  const routing = useRoutes(routes);
+  const { darkMode } = useSelector((state) => state);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkMode ? dark : light}>
+      <GlobalStyles />
+      <div className="App">{routing}</div>
+    </ThemeProvider>
   );
 }
 
