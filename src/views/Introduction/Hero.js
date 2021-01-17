@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.common.white,
 
       "&:hover": {
-        backgroundColor: "rgb(163, 63, 93)",
+        backgroundColor: fade(theme.palette.primary.main, 0.7),
       },
     },
   };
@@ -50,22 +50,12 @@ function Hero() {
             </Typography>
             <Box display="flex" mt={3}>
               <Box>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  disableElevation
-                >
+                <Button variant="contained" color="primary" size="large">
                   Hire me
                 </Button>
               </Box>
               <Box ml={2}>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  disableElevation
-                >
+                <Button variant="outlined" color="primary" size="large">
                   Learn more
                 </Button>
               </Box>

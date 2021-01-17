@@ -7,6 +7,7 @@ import {
   Icon,
   useMediaQuery,
   useTheme,
+  fade,
 } from "@material-ui/core";
 import { Home, Grid, User } from "react-feather";
 import clsx from "clsx";
@@ -15,6 +16,7 @@ const useStyle = makeStyles((theme) => {
   console.log(theme);
   return {
     paper: {
+      backgroundColor: "transparent",
       position: "absolute",
       top: "50%",
       left: 0,
@@ -23,6 +25,7 @@ const useStyle = makeStyles((theme) => {
       height: "fit-content",
 
       [theme.breakpoints.down("md")]: {
+        backgroundColor: theme.palette.background.paper,
         bottom: 0,
         top: "unset",
         left: "50%",
@@ -58,6 +61,9 @@ const useStyle = makeStyles((theme) => {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.short,
       }),
+      "& .MuiTypography-root": {
+        color: theme.palette.primary.main,
+      },
       [theme.breakpoints.down("md")]: {
         marginBottom: 0,
         marginRight: theme.spacing(1),
@@ -68,11 +74,30 @@ const useStyle = makeStyles((theme) => {
         marginRight: 0,
       },
       "&:hover": {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: fade(theme.palette.primary.main, 0.1),
+        // "& .material-icons": {
+        //   color: "#ffffff",
+        // },
       },
     },
     menuItemActive: {
       backgroundColor: theme.palette.primary.main,
+
+      "&:hover": {
+        backgroundColor: theme.palette.primary.main,
+      },
+
+      "& .material-icons": {
+        color: "#ffffff",
+      },
+
+      "& .MuiTypography-root": {
+        color: "#ffffff",
+      },
+    },
+
+    menuIcon: {
+      color: theme.palette.primary.main,
     },
   };
 });
@@ -86,21 +111,21 @@ function Navigation() {
     <Paper elevation={0} className={classes.paper}>
       <Box className={classes.menuWrapper}>
         <Box className={clsx(classes.menuItem, classes.menuItemActive)}>
-          <Icon>
+          <Icon className={classes.menuIcon}>
             <Home />
           </Icon>
           <Typography variant="caption">Intro</Typography>
         </Box>
 
         <Box className={classes.menuItem}>
-          <Icon>
+          <Icon className={classes.menuIcon}>
             <Grid />
           </Icon>
           <Typography variant="caption">Skills</Typography>
         </Box>
 
         <Box className={classes.menuItem}>
-          <Icon>
+          <Icon className={classes.menuIcon}>
             <User />
           </Icon>
           <Typography variant="caption">Contact</Typography>
